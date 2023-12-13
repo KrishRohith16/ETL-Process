@@ -110,3 +110,25 @@ FROM vw_emp_data
 WHERE dept_name IS NOT NULL AND YEAR(hired_date) = 2023
 ORDER BY emp_id ;
 -- ----------------------------------------------------------------
+
+-- ***Load :
+-- Creating new database to load cleaned data.
+CREATE DATABASE CleanedDataDB;
+
+-- Creating table 'EmpDevInfo' for cleaned data and loading to 'CleanedDataDB' database.
+CREATE TABLE CleanedDataDB.EmpDevInfo AS
+SELECT	DISTINCT
+	emp_id,
+    CAPITALIZE(emp_name) AS emp_name,
+    IF(gender = 'M', 'Male', 'Female') AS gender,
+    hired_date,
+    CAPITALIZE(city_name) AS city_name,
+    CAPITALIZE(dept_name) AS dept_name,
+    CAST(IFNULL(IF(rewards IN ('n/a', 'N/A', 'not applicable', 'Not Applicable'), null, rewards),0) AS SIGNED) AS rewards,
+    CAST(REPLACE(monthly_salary, '₹', '') AS SIGNED) AS monthly_salary
+FROM vw_emp_data
+WHERE dept_name IS NOT NULL AND YEAR(hired_date) = 2023
+ORDER BY emp_id ;
+
+SELECT * FROM CleanedDataDB.EmpDevInfo;
+-- ==========================================================================
