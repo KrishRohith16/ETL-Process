@@ -69,3 +69,9 @@ INSERT INTO Emp(emp_id, emp_name, gender, hired_date, emp_city_id, emp_dept_id, 
 (25,		'Akash',				'M',	'2023-07-04',	13,		101,	'4',						'₹ 45000'),
 (1,			'Yugi',					'M',	'2023-02-20',	11,		104,	'5',						'₹ 88000');
 -- ----------------------------------------------------------------
+
+-- Retrieving Tables (Emp, City, Dept) :
+SELECT * FROM Emp;
+SELECT * FROM City;
+SELECT * FROM Dept;
+-- ----------------------------------------------------------------
