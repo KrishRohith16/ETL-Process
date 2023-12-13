@@ -94,3 +94,19 @@ ORDER BY e.emp_id;
 
 SELECT * FROM vw_emp_data;
 -- ----------------------------------------------------------------
+
+-- ***ETL PROCESS ***
+-- ***Extraction & Transformation :
+SELECT	DISTINCT
+	emp_id,
+    CAPITALIZE(emp_name) AS emp_name,
+    IF(gender = 'M', 'Male', 'Female') AS gender,
+    hired_date,
+    CAPITALIZE(city_name) AS city_name,
+    CAPITALIZE(dept_name) AS dept_name,
+    CAST(IFNULL(IF(rewards IN ('n/a', 'N/A', 'not applicable', 'Not Applicable'), null, rewards),0) AS SIGNED) AS rewards,
+    CAST(REPLACE(monthly_salary, '₹', '') AS SIGNED) AS monthly_salary
+FROM vw_emp_data
+WHERE dept_name IS NOT NULL AND YEAR(hired_date) = 2023
+ORDER BY emp_id ;
+-- ----------------------------------------------------------------
