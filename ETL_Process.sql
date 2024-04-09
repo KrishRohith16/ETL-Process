@@ -83,3 +83,6 @@ ORDER BY emp_id;
 
 -- Retrieving View Table "vw_emp_info" :
 SELECT * FROM vw_emp_info;
+
+-- Creating new database called 'ReportDB' :
+CREATE DATABASE ReportDB;
