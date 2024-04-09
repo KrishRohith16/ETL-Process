@@ -54,3 +54,15 @@ BEGIN
     RETURN RESULT;
 END$$
 
+-- Transforming and Cleaning unstructured data to structured data :
+SELECT DISTINCT
+	emp_id,
+    CAPITALIZE(emp_name) AS emp_name,
+    IF(gender = 'm', 'Male', 'Female') AS gender,
+    hired_date,
+    CAPITALIZE(city_name) AS city_name,
+    CAPITALIZE(dept_name) AS dept_name,
+    IFNULL(IF(rewards IN ('n/a', 'not applicable'), null, rewards), 0) AS rewards,
+    TRIM(REPLACE(monthly_salary, '?','')) AS monthly_salary
+FROM vw_emp_data
+ORDER BY emp_id;
