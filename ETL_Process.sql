@@ -26,3 +26,6 @@ FROM emp e
 LEFT JOIN City c ON e.emp_city_id = c.city_id
 LEFT JOIN Dept d ON e.emp_dept_id = d.dept_id
 ORDER BY e.emp_id;
+
+-- Retrieving view table vw_emp_data :
+SELECT * FROM vw_emp_data; 
