@@ -104,3 +104,18 @@ INDEX idx_dept_name (dept_name),
 INDEX idx_rewards (rewards),
 INDEX idx_monthly_salary (monthly_salary)
 );
+
+--  Loading transformed data-set to the new table (emp_info) into ReportDB :
+INSERT INTO ReportDB.emp_info 
+SELECT DISTINCT
+	emp_id,
+    CAPITALIZE(emp_name) AS emp_name,
+    IF(gender = 'm', 'Male', 'Female') AS gender,
+    hired_date,
+    CAPITALIZE(city_name) AS city_name,
+    CAPITALIZE(dept_name) AS dept_name,
+    IFNULL(IF(rewards IN ('n/a', 'not applicable'), null, rewards), 0) AS rewards,
+    TRIM(REPLACE(monthly_salary, '?','')) AS monthly_salary
+FROM vw_emp_data
+ORDER BY emp_id;
+-- ====================================================================================================================================================
