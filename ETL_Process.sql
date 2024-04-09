@@ -29,3 +29,28 @@ ORDER BY e.emp_id;
 
 -- Retrieving view table vw_emp_data :
 SELECT * FROM vw_emp_data; 
+
+-- Creating User-Defined Function for capitalizing First Letter of each word :
+USE ETL_PROCESS;
+DELIMITER $$
+CREATE FUNCTION CAPITALIZE(STR TEXT)
+RETURNS TEXT
+DETERMINISTIC
+BEGIN
+	DECLARE RESULT TEXT;
+    DECLARE I INT;
+    SET STR = LCASE(STR);
+	SET RESULT = UPPER(LEFT(STR,1));
+    SET I = 2;
+    
+    WHILE I <= LENGTH(STR) DO
+		IF SUBSTRING(STR, I - 1, 1) IN (' ' ,'-','_') THEN
+			SET RESULT = CONCAT (RESULT, UPPER(SUBSTRING(STR, I, 1)));
+		ELSE 
+			SET RESULT = CONCAT(RESULT, SUBSTRING(STR, I, 1));
+		END IF;
+        SET I = I + 1;
+	END WHILE;
+    RETURN RESULT;
+END$$
+
