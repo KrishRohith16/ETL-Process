@@ -80,3 +80,6 @@ SELECT DISTINCT
     TRIM(REPLACE(monthly_salary, '?','')) AS monthly_salary
 FROM vw_emp_data
 ORDER BY emp_id;
+
+-- Retrieving View Table "vw_emp_info" :
+SELECT * FROM vw_emp_info;
