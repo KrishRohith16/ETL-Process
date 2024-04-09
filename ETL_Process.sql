@@ -6,3 +6,8 @@ USE ETL_PROCESS;
 -- Emp.csv
 -- City.csv
 -- Dept.csv
+
+-- Retrieving Tables ( Emp, City, Dept ) :
+SELECT * FROM Emp; 
+SELECT * FROM City;
+SELECT * FROM Dept;
