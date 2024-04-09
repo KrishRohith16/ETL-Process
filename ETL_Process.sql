@@ -86,3 +86,21 @@ SELECT * FROM vw_emp_info;
 
 -- Creating new database called 'ReportDB' :
 CREATE DATABASE ReportDB;
+
+-- Creating a table in ReportDB, in order to store transformed data set :
+CREATE TABLE ReportDB.Emp_Info(
+emp_id INT NOT NULL PRIMARY KEY,
+emp_name VARCHAR(50) NOT NULL,
+gender ENUM('Male', 'Female', 'Other') NOT NULL,
+hired_date DATE NOT NULL,
+city_name VARCHAR(50)NOT NULL,
+dept_name VARCHAR(50)NOT NULL,
+rewards INT DEFAULT 0,
+monthly_salary INT NOT NULL,
+INDEX idx_emp_name (emp_name),
+INDEX idx_hired_date (hired_date),
+INDEX idx_city_name (city_name),
+INDEX idx_dept_name (dept_name),
+INDEX idx_rewards (rewards),
+INDEX idx_monthly_salary (monthly_salary)
+);
